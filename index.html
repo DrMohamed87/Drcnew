@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البوابة الرقمية للتجمعات التنموية بسيناء - مركز بحوث الصحراء</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #004d40;
+            --secondary-color: #00796b;
+            --accent-color: #ffab00;
+            --sand-color: #d9a56a;
+            --light-sand: #f3e5c3;
+            --text-dark: #263238;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --border-radius: 16px;
+            --transition: all 0.3s ease;
+            --alert-color: #e53935;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            line-height: 1.5;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom, 
+                rgba(217, 165, 106, 0.9) 0%, 
+                rgba(243, 229, 195, 0.95) 100%);
+        }
+
+        /* إشعار البث التجريبي */
+        .pilot-alert {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: var(--alert-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(229, 57, 53, 0.4);
+            animation: pulse 2s infinite;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transform: rotate(-5deg);
+            border: 1px solid white;
+        }
+
+        .pilot-alert::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 10px;
+            position: relative;
+        }
+
+        /* Header Styles */
+        header {
+            margin-bottom: 15px;
+            padding: 10px;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(0, 77, 64, 0.3);
+            border: 3px solid white;
+            overflow: hidden;
+            padding: 5px;
+        }
+        
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        header h1 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .initiative {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: 800;
+            margin: 8px 0;
+            padding: 6px 12px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            border: 1px dashed var(--accent-color);
+            line-height: 1.3;
+        }
+
+        header p {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 8px 12px;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            line-height: 1.4;
+            max-width: 90%;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 10px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            box-shadow: 0 8px 20px rgba(0, 77, 64, 0.15);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 200px;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 77, 64, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+        
+        .card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            transition: var(--transition);
+            background: linear-gradient(135deg, var(--light-sand) 0%, #f9f3e3 100%);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 77, 64, 0.15);
+            border: 2px solid var(--sand-color);
+        }
+
+        .card h2 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 8px;
+            width: 100%;
+            line-height: 1.3;
+            min-height: 3.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--sand-color));
+            border-radius: 2px;
+        }
+
+        .card p {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: #546e7a;
+            margin-bottom: 15px;
+            display: none; /* إخفاء النص لعدم وجود مساحة كافية */
+        }
+
+        .card .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            box-shadow: 0 3px 8px rgba(0, 77, 64, 0.3);
+            border: 1px solid transparent;
+            margin-top: auto;
+        }
+
+        .card .btn:hover {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            padding: 12px 0;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            gap: 8px;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: #546e7a;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .design-team {
+            font-size: 0.7rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 5px;
+            padding: 4px 8px;
+            background-color: rgba(255, 171, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(-5deg) scale(1); }
+            50% { transform: rotate(-5deg) scale(1.05); }
+            100% { transform: rotate(-5deg) scale(1); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Responsive Design for very small devices */
+        @media (max-height: 700px) {
+            .logo-img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .initiative {
+                font-size: 0.8rem;
+            }
+            
+            header p {
+                font-size: 0.75rem;
+            }
+            
+            .card {
+                padding: 15px 10px;
+                min-height: 180px;
+            }
+            
+            .card .icon {
+                font-size: 2rem;
+                width: 60px;
+                height: 60px;
+                margin-bottom: 10px;
+            }
+            
+            .card h2 {
+                font-size: 1.1rem;
+                min-height: 2.8em;
+            }
+            
+            .card .btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .footer-text {
+                font-size: 0.7rem;
+            }
+            
+            .design-team {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .container {
+                padding: 5px;
+            }
+            
+            header {
+                margin-bottom: 10px;
+                padding: 5px;
+            }
+            
+            .logo-img {
+                width: 90px;
+                height: 90px;
+                margin-bottom: 5px;
+            }
+            
+            header h1 {
+                font-size: 1rem;
+                margin-bottom: 5px;
+            }
+            
+            .initiative {
+                font-size: 0.75rem;
+                padding: 4px 8px;
+                margin: 5px 0;
+            }
+            
+            header p {
+                font-size: 0.7rem;
+                padding: 6px 10px;
+            }
+            
+            .main-content {
+                gap: 10px;
+                margin-bottom: 5px;
+            }
+            
+            .card {
+                padding: 12px 8px;
+                min-height: 160px;
+            }
+            
+            .card .icon {
+                font-size: 1.8rem;
+                width: 50px;
+                height: 50px;
+                margin-bottom: 8px;
+            }
+            
+            .card h2 {
+                font-size: 1rem;
+                margin-bottom: 8px;
+                padding-bottom: 5px;
+                min-height: 2.5em;
+            }
+            
+            .card .btn {
+                padding: 5px 10px;
+                font-size: 0.75rem;
+            }
+            
+            footer {
+                padding: 8px 0;
+            }
+            
+            .footer-content {
+                padding: 8px;
+                gap: 5px;
+            }
+            
+            .footer-text {
+                font-size: 0.65rem;
+            }
+            
+            .design-team {
+                font-size: 0.6rem;
+                padding: 3px 6px;
+            }
+
+            .pilot-alert {
+                top: 10px;
+                left: 10px;
+                padding: 5px 10px;
+                font-size: 0.65rem;
+            }
+        }
+
+        /* Accessibility improvements */
+        .focus-visible:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        /* Prevent scrolling */
+        body, html {
+            overflow: hidden;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- إشعار البث التجريبي -->
+    <div class="pilot-alert">
+        <i class="fas fa-broadcast-tower"></i>
+        بث تجريبي
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-img">
+                    <img src="1.png" alt="شعار مركز بحوث الصحراء">
+                </div>
+                <h1>مركز بحوث الصحراء</h1>
+                <div class="initiative">مبادرة اسأل واستشير قبل ما تدفع كتير</div>
+                <p>البوابة الرقمية للتجمعات التنموية بسيناء</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- الزر الأول: المساعد الذكي -->
+            <a href="assistant.html" class="card focus-visible">
+                <div class="icon" aria-hidden="true"><i class="fas fa-robot"></i></div>
+                <h2>المساعد الذكي</h2>
+                <p>احصل على إجابات فورية واستشارات زراعية مخصصة باستخدام أحدث تقنيات الذكاء الاصطناعي.</p>
+                <span class="btn">بدء المحادثة</span>
+            </a>
+
+            <!-- الزر الثاني: التوصيات الشتوية -->
+            <a href="recommendations.html" class="card focus-visible">
+                <div class="icon" aria-hidden="true"><i class="fas fa-clipboard-list"></i></div>
+                <h2>التوصيات الشتوية</h2>
+                <p>اطلع على خطط الزراعة المقترحة للموسم الشتوي 2025/2026 بناءً على التجمع الزراعي.</p>
+                <span class="btn">عرض التوصيات</span>
+            </a>
+        </main>
+        
+        <footer>
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>اختر الخدمة التي تناسب احتياجاتك</p>
+                    <p>جميع الحقوق محفوظة &copy; مركز بحوث الصحراء 2023</p>
+                </div>
+                <div class="design-team">
+                    تم التصميم بواسطة الفريق البحثي لمبادرة اسأل واستشير قبل ما تدفع كتير
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // منع التمرير نهائياً
+        document.addEventListener('DOMContentLoaded', function() {
+            // منع التمرير باللمس على الأجهزة المحمولة
+            document.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+            }, { passive: false });
+            
+            // منع التمرير بالماوس
+            document.addEventListener('wheel', function(e) {
+                e.preventDefault();
+            }, { passive: false });
+            
+            // منع التمرير بمفاتيح الأسهم
+            document.addEventListener('keydown', function(e) {
+                if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+                    e.preventDefault();
+                }
+            });
+            
+            // تحسين إمكانية الوصول عن طريق إضافة تركيز للعناصر عند التنقل باستخدام لوحة المفاتيح
+            const focusableElements = document.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            
+            focusableElements.forEach(el => {
+                el.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && this.tagName !== 'BUTTON' && this.tagName !== 'INPUT') {
+                        this.click();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البوابة الرقمية للتجمعات التنموية بسيناء - مركز بحوث الصحراء</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #004d40;
+            --secondary-color: #00796b;
+            --accent-color: #ffab00;
+            --sand-color: #d9a56a;
+            --light-sand: #f3e5c3;
+            --text-dark: #263238;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --border-radius: 16px;
+            --transition: all 0.3s ease;
+            --alert-color: #e53935;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding: 15px;
+            line-height: 1.5;
+            background: linear-gradient(to bottom, 
+                rgba(217, 165, 106, 0.9) 0%, 
+                rgba(243, 229, 195, 0.95) 100%);
+            overflow-x: hidden; /* منع التمرير الأفقي */
+        }
+
+        /* إشعار البث التجريبي */
+        .pilot-alert {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: var(--alert-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(229, 57, 53, 0.4);
+            animation: pulse 2s infinite;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transform: rotate(-5deg);
+            border: 1px solid white;
+        }
+
+        .pilot-alert::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 10px;
+            position: relative;
+        }
+
+        /* Header Styles */
+        header {
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 77, 64, 0.3);
+            border: 3px solid white;
+            overflow: hidden;
+            padding: 5px;
+        }
+        
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        
+        .initiative {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 800;
+            margin: 10px 0;
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            border: 1px dashed var(--accent-color);
+            line-height: 1.3;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 10px 15px;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            line-height: 1.4;
+            max-width: 90%;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            box-shadow: 0 8px 20px rgba(0, 77, 64, 0.15);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 220px;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 77, 64, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+        
+        .card .icon {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            transition: var(--transition);
+            background: linear-gradient(135deg, var(--light-sand) 0%, #f9f3e3 100%);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 77, 64, 0.15);
+            border: 2px solid var(--sand-color);
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+            width: 100%;
+            line-height: 1.3;
+            min-height: 3.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--sand-color));
+            border-radius: 2px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #546e7a;
+            margin-bottom: 15px;
+            display: block; /* إظهار النص مرة أخرى */
+        }
+
+        .card .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            box-shadow: 0 3px 8px rgba(0, 77, 64, 0.3);
+            border: 1px solid transparent;
+            margin-top: auto;
+        }
+
+        .card .btn:hover {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            padding: 15px 0;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            gap: 10px;
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: #546e7a;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .design-team {
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 8px;
+            padding: 6px 12px;
+            background-color: rgba(255, 171, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(-5deg) scale(1); }
+            50% { transform: rotate(-5deg) scale(1.05); }
+            100% { transform: rotate(-5deg) scale(1); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .main-content {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .card {
+                width: calc(50% - 15px);
+                max-width: 400px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .initiative {
+                font-size: 1.1rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .logo-img {
+                width: 110px;
+                height: 110px;
+            }
+            
+            header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .initiative {
+                font-size: 0.9rem;
+            }
+            
+            header p {
+                font-size: 0.85rem;
+            }
+            
+            .card {
+                padding: 20px 15px;
+            }
+            
+            .card .icon {
+                font-size: 2.5rem;
+                width: 70px;
+                height: 70px;
+            }
+            
+            .card h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 5px;
+            }
+            
+            header {
+                margin-bottom: 15px;
+            }
+            
+            .logo-img {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 10px;
+            }
+            
+            header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .initiative {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+            
+            header p {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+            
+            .main-content {
+                gap: 15px;
+            }
+            
+            .card {
+                padding: 15px 10px;
+                min-height: 200px;
+            }
+            
+            .card .icon {
+                font-size: 2.2rem;
+                width: 60px;
+                height: 60px;
+                margin-bottom: 15px;
+            }
+            
+            .card h2 {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+            }
+            
+            .card p {
+                font-size: 0.85rem;
+            }
+            
+            .card .btn {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+            
+            .footer-text {
+                font-size: 0.8rem;
+            }
+            
+            .design-team {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Accessibility improvements */
+        .focus-visible:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- إشعار البث التجريبي -->
+    <div class="pilot-alert">
+        <i class="fas fa-broadcast-tower"></i>
+        بث تجريبي
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-img">
+                    <img src="1.png" alt="شعار مركز بحوث الصحراء">
+                </div>
+                <h1>مركز بحوث الصحراء</h1>
+                <div class="initiative">مبادرة اسأل واستشير قبل ما تدفع كتير</div>
+                <p>البوابة الرقمية للتجمعات التنموية بسيناء</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- الزر الأول: المساعد الذكي -->
+            <a href="assistant.html" class="card focus-visible">
+                <div class="icon" aria-hidden="true"><i class="fas fa-robot"></i></div>
+                <h2>المساعد الذكي</h2>
+                <p>احصل على إجابات فورية واستشارات زراعية مخصصة باستخدام أحدث تقنيات الذكاء الاصطناعي.</p>
+                <span class="btn">بدء المحادثة</span>
+            </a>
+
+            <!-- الزر الثاني: التوصيات الشتوية -->
+            <a href="recommendations.html" class="card focus-visible">
+                <div class="icon" aria-hidden="true"><i class="fas fa-clipboard-list"></i></div>
+                <h2>التوصيات الشتوية</h2>
+                <p>اطلع على خطط الزراعة المقترحة للموسم الشتوي 2025/2026 بناءً على التجمع الزراعي.</p>
+                <span class="btn">عرض التوصيات</span>
+            </a>
+        </main>
+        
+        <footer>
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>اختر الخدمة التي تناسب احتياجاتك</p>
+                    <p>جميع الحقوق محفوظة &copy; مركز بحوث الصحراء 2023</p>
+                </div>
+                <div class="design-team">
+                    تم التصميم بواسطة الفريق البحثي لمبادرة اسأل واستشير قبل ما تدفع كتير
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // تحسين إمكانية الوصول عن طريق إضافة تركيز للعناصر عند التنقل باستخدام لوحة المفاتيح
+        document.addEventListener('DOMContentLoaded', function() {
+            const focusableElements = document.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            
+            focusableElements.forEach(el => {
+                el.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && this.tagName !== 'BUTTON' && this.tagName !== 'INPUT') {
+                        this.click();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

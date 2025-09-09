@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز بحوث الصحراء - إرشادات زراعية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #004d40;
+            --secondary-color: #00796b;
+            --accent-color: #ffab00;
+            --message-color: #1565c0;
+            --light-green: #e8f5e9;
+            --dark-green: #00251a;
+            --card-bg: #ffffff;
+            --bg-color: #f4f8f7;
+            --text-dark: #263238;
+            --text-light: #546e7a;
+            --wheat-gold: #d4af37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, var(--bg-color) 0%, #e0f2f1 100%);
+            color: var(--text-dark);
+            line-height: 1.7;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 77, 64, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 121, 107, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px 15px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-green) 100%);
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
+        }
+
+        .header .logo {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        .header p.main-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .header h1 {
+            font-weight: 900;
+            font-size: 2rem;
+            margin: 0 0 15px 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header p.slogan {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 600;
+        }
+
+        .header .season-tag {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--dark-green);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .location-selector {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            border: 2px dashed var(--primary-color);
+        }
+        
+        .location-heading {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .location-heading i {
+            font-size: 2.5rem;
+            color: var(--wheat-gold);
+            margin-bottom: 15px;
+            display: block;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .location-heading h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        .location-heading h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .location-heading p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-top: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .select-container {
+            position: relative;
+            margin: 0 auto;
+            max-width: 600px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            z-index: 1;
+        }
+
+        select#location-select {
+            width: 100%;
+            padding: 22px 25px 22px 70px; /* زيادة الـ padding لتحسين المظهر */
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            border: none;
+            background: white;
+            cursor: pointer;
+            appearance: none;
+            color: var(--text-dark);
+            height: 75px; /* زيادة الارتفاع */
+            line-height: 1.5;
+        }
+
+        .select-icon {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            color: var(--wheat-gold);
+            pointer-events: none;
+        }
+
+        #results-container {
+            margin-top: 25px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            display: none;
+        }
+
+        #results-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        .location-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 12px;
+            background: linear-gradient(135deg, rgba(0, 121, 107, 0.1) 0%, rgba(0, 77, 64, 0.1) 100%);
+            border-radius: 15px;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .accordion-item {
+            background-color: var(--card-bg);
+            border-radius: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .accordion-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--light-green) 0%, white 100%);
+        }
+
+        .accordion-item.active .accordion-header {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+        }
+
+        .accordion-header h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .accordion-item.active .accordion-header h3 { color: white; }
+        
+        .accordion-header .icon-toggle {
+            font-size: 1.3rem;
+            transition: transform 0.4s ease;
+        }
+
+        .accordion-item.active .accordion-header .icon-toggle {
+            color: white;
+            transform: rotate(180deg);
+        }
+        
+        .accordion-item.notes-card .accordion-header { background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%); }
+        .accordion-item.notes-card .accordion-header h3 { color: #c88719; }
+        .accordion-item.final-message .accordion-header { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); }
+        .accordion-item.final-message .accordion-header h3 { color: var(--message-color); }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), padding 0.6s ease;
+            padding: 0 25px;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .content-wrapper { padding: 25px 0; }
+        .content-wrapper ul { padding-right: 20px; margin: 0; }
+        .content-wrapper li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-right: 25px;
+        }
+        .content-wrapper li:before {
+            content: "•";
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            position: absolute;
+            right: 0;
+            top: -3px;
+        }
+        .content-wrapper p { margin-bottom: 12px; }
+        .content-wrapper p:last-child { margin-bottom: 0; }
+
+        .content-wrapper p.final-p { 
+            text-align: center; 
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .content-wrapper strong.final-strong { 
+            display: block;
+            text-align: center;
+            background: var(--message-color);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer {
+            text-align: center;
+            padding-top: 25px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 40px;
+            position: relative;
+            border-top: 2px solid rgba(0, 121, 107, 0.2);
+        }
+
+        .home-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .home-button:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            50% { transform: scale(1.05); }
+        }
+        @keyframes float {
+            50% { transform: translateY(-8px); }
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 15px; padding-bottom: 80px; }
+            .header { padding: 20px 12px; }
+            .header h1 { font-size: 1.7rem; }
+            .location-selector { padding: 20px; }
+            .location-heading h2 { font-size: 1.5rem; }
+            select#location-select { 
+                font-size: 1rem; 
+                height: 65px; /* زيادة الارتفاع في الجوال أيضًا */
+                padding: 18px 20px 18px 60px; /* تعديل الـ padding للجوال */
+            }
+            .select-icon { left: 20px; }
+            .accordion-header h3 { font-size: 1.15rem; }
+            .location-header { font-size: 1.15rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- زر العودة للصفحة الرئيسية -->
+    <a href="index.html" class="home-button" title="العودة للرئيسية">
+        <i class="fas fa-home"></i>
+    </a>
+
+    <div class="main-container">
+        <header class="header">
+            <div class="logo"><i class="fas fa-seedling"></i></div>
+            <p class="main-title">مركز بحوث الصحراء</p>
+            <h1>توصيات زراعة الموسم الشتوي 2025/2026</h1>
+            <p class="slogan">مقترح للزراعة الشتوية بناءً على بيانات الموسم السابق</p>
+            <div class="season-tag">توفيراً للجهد وتسهيلاً للتسويق</div>
+        </header>
+        
+        <section class="location-selector">
+            <div class="location-heading">
+                <i class="fas fa-map-marker-alt"></i>
+                <h2>حدد موقعك الزراعي</h2>
+                <p>اختر التجمع الزراعي من القائمة أدناه لعرض التوصيات الفنية المخصصة لمنطقتك</p>
+            </div>
+            <div class="select-container">
+                <select id="location-select">
+                    <option value="" disabled selected>-- اختر تجمعك الزراعي --</option>
+                </select>
+                <div class="select-icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+        
+        <div id="results-container"></div>
+    </div>
+    
+    <footer class="footer">
+        <p>تم التصميم بواسطة فريق عمل مبادرة "اسأل واستشير قبل ما تدفع كتير"</p>
+        <p>جميع الحقوق محفوظة © مركز بحوث الصحراء 2025</p>
+    </footer>
+
+    <script>
+    const recommendationData = [
+        // المجموعة الأولى
+        { name: "النثيلة", group: "group1" },
+        { name: "طيبة التمد", group: "group1" },
+        { name: "الخفجة", group: "group1" },
+        { name: "اسلا وعريق", group: "group1" },
+        { name: "وادي سعال", group: "group1" },
+
+        // المجموعة الثانية
+        { name: "الديفديف", group: "group2" },
+        { name: "الحمه", group: "group2" },
+        { name: "ابورصاصة", group: "group2" },
+        { name: "النوافعة", group: "group2" },
+        { name: "خشم القاد", group: "group2" },
+        { name: "سهل القاع", group: "group2" },
+
+        // المجموعة الثالثة
+        { name: "السحيمي", group: "group3" },
+        { name: "بغداد", group: "group3" },
+        { name: "طويل الحامض", group: "group3" },
+        { name: "الجزء الغربي من ابورصاصة", group: "group3" }
+    ];
+    
+    const finalMessageHTML = `
+        <div class="accordion-item final-message">
+            <div class="accordion-header"><h3><i class="fas fa-bullhorn"></i>رسالة إلى كل مزارع</h3><i class="fas fa-chevron-down icon-toggle"></i></div>
+            <div class="accordion-content">
+                <div class="content-wrapper">
+                    <p class="final-p">
+                        بلدنا وولادنا محتاجة القمح والشعير،<br>
+                        والتصدير محتاج البصل والثوم.<br>
+                        البنجر بدون تعاقد مش لازم نزرعه ونشوف بديل.<br>
+                        أما طبق الفول وقرص الطعمية دة أساس الأساس لكل صباح مصري.<br>
+                        <strong>تذكر:</strong> ممكن جداً المحصول ينجح عندك وما ينفعش عند جارك في نفس التجمع لاختلاف طبيعة الأرض.
+                    </p>
+                    <strong class="final-strong">نتمنى لكم موسمًا كله خير وبركة.</strong>
+                </div>
+            </div>
+        </div>
+    `;
+
+    const recommendationContent = {
+        group1: `
+            <div class="accordion-item"><div class="accordion-header"><h3><i class="fas fa-leaf"></i>المحاصيل المقترحة</h3><i class="fas fa-chevron-down icon-toggle"></i></div><div class="accordion-content"><div class="content-wrapper"><ul><li>الفول البلدي</li><li>القمح والشعير</li><li>بنجر سكر (بعقد)</li><li>البصل والثوم</li><li>البسلة</li><li>كمون وكزبرة</li></ul></div></div></div>
+            <div class="accordion-item"><div class="accordion-header"><h3><i class="fas fa-tractor"></i>طريقة الزراعة والري</h3><i class="fas fa-chevron-down icon-toggle"></i></div><div class="accordion-content"><div class="content-wrapper"><p>الزراعة على <strong>مصاطب مرتفعة</strong> في المسافة البينية بين خطوط الأشجار أو في مساحات منفصلة، مع استخدام نظام <strong>الري بالتنقيط</strong>.</p></div></div></div>
+            <div class="accordion-item"><div class="accordion-header"><h3><i class="fas fa-weight-hanging"></i>كمية التقاوي للفدان</h3><i class="fas fa-chevron-down icon-toggle"></i></div><div class="accordion-content"><div class="content-wrapper"><ul><li><strong>الفول البلدي:</strong> 25 كجم</li><li><strong>القمح والشعير:</strong> 2 شكارة (إجمالي 70 كجم)</li><li><strong>البصل:</strong> 25 قصبة</li><li><strong>الثوم:</strong> 350 كجم فصوص</li><li><strong>البسلة:</strong> 20 كجم</li><li><strong>الكمون:</strong> 10 كجم</li><li><strong>الكزبرة (حبوب):</strong> 10 كجم</li><li><strong>الكزبرة (حش أخضر):</strong> 25 كجم</li></ul></div></div></div>
+            <div class="accordion-item"><div class="accordion-header"><h3><i class="fas fa-carrot"></i>الزراعة الجانبية والمنزلية</h3><i class="fas fa-chevron-down icon-toggle"></i></div><div class="accordion-content"><div class="content-wrapper"><p>يمكن زراعة مساحات محدودة من: كرنب، قرنبيط، بروكلي، طماطم، فلفل، باذنجان، خس، جرجير، كرات، فجل.</p></div></div></div>
+            <div class="accordion-item notes-card"><div class="accordion-header"><h3><i class="fas fa-exclamation-triangle"></i>ملاحظات هامة للنجاح</h3><i class="fas fa-chevron-down icon-toggle"></i></div><div class="accordion-content"><div class="content-wrapper"><ul><li><strong>التسميد العضوي:</strong> يفضل استخدام سباخ بلدي (20م³/فدان) أو سبلة كتكوت (10م³/فدان).</li><li><strong>خدمة الأرض:</strong> يضاف 50 كجم كبريت زراعي + 50 كجم سلفات نشادر + 50 كجم سلفات بوتاسيوم.</li><li><strong>تحذير:</strong> يُنصح بعدم استخدام السوبر فوسفات وعدم حقن الهيوميك.</li><li><strong>معالجة الملوحة:</strong> يفضل استخدام معالج ملوحة يحتوي على أحماض أمينية.</li></ul></div></div></div>
+            ${finalMessageHTML}`,
+        group2: `
+            <div class="accordion-item"><div class="accordion-header"><h3><i class="fas fa-leaf"></i>المحاصيل المقترحة</h3><i class="fas fa-chevron-down icon-toggle"></i></div><div class="accordion-content"><div class="content-wrapper"><ul><li>القمح والشعير</li><li>بنجر سكر (بعقد)</li><li>البصل والثوم</li><li>البسلة</li></ul></div></div></div>
+            <div class="accordion-item"><div class="accordion-header"><h3><i class="fas fa-tractor"></i>طريقة الزراعة والري</h3><i class="fas fa-chevron-down icon-toggle"></i></div><div class="accordion-content"><div class="content-wrapper"><p>الزراعة على <strong>مصاطب مرتفعة</strong> في المسافة البينية بين خطوط الأشجار أو في مساحات منفصلة، مع استخدام نظام <strong>الري بالتنقيط</strong>.</p></div></div></div>
+            <div class="accordion-item"><div class="accordion-header"><h3><i class="fas fa-carrot"></i>الزراعة الجانبية والمنزلية</h3><i class="fas fa-chevron-down icon-toggle"></i></div><div class="accordion-content"><div class="content-wrapper"><p>يمكن زراعة مساحات محدودة من: كرنب، قرنبيط، بروكلي، طماطم، فلفل، باذنجان، خس، جرجير.</p></div></div></div>
+            <div class="accordion-item notes-card"><div class="accordion-header"><h3><i class="fas fa-exclamation-triangle"></i>ملاحظات هامة للنجاح</h3><i class="fas fa-chevron-down icon-toggle"></i></div><div class="accordion-content"><div class="content-wrapper"><ul><li><strong>التسميد العضوي:</strong> يفضل استخدام سباخ بلدي (20م³/فدان) أو سبلة كتكوت (10م³/فدان).</li><li><strong>خدمة الأرض:</strong> يضاف 50 كجم كبريت زراعي + 50 كجم سلفات نشادر + 50 كجم سلفات بوتاسيوم.</li><li><strong>تحذير:</strong> يُنصح بعدم استخدام السوبر فوسفات وعدم حقن الهيوميك.</li><li><strong>معالجة الملوحة:</strong> يفضل استخدام معالج ملوحة يحتوي على أحماض أمينية.</li></ul></div></div></div>
+            ${finalMessageHTML}`,
+        group3: `
+            <div class="accordion-item"><div class="accordion-header"><h3><i class="fas fa-tree"></i>التوصية الرئيسية</h3><i class="fas fa-chevron-down icon-toggle"></i></div><div class="accordion-content"><div class="content-wrapper"><p><strong>يتم الاكتفاء بزراعة الزيتون فقط في هذه التجمعات.</strong> يعتبر الزيتون محصولاً استراتيجياً واقتصادياً ممتازاً لهذه المناطق ويتطلب رعاية محددة لتحقيق أفضل إنتاجية.</p></div></div></div>
+            <div class="accordion-item"><div class="accordion-header"><h3><i class="fas fa-carrot"></i>الزراعة الجانبية الممكنة</h3><i class="fas fa-chevron-down icon-toggle"></i></div><div class="accordion-content"><div class="content-wrapper"><p>يمكن استغلال المساحات الصغيرة جداً لزراعات منزلية مثل: كرنب، قرنبيط، بروكلي، طماطم، فلفل، باذنجان، خس، جرجير.</p></div></div></div>
+            <div class="accordion-item notes-card"><div class="accordion-header"><h3><i class="fas fa-lightbulb"></i>نصائح لرعاية الزيتون</h3><i class="fas fa-chevron-down icon-toggle"></i></div><div class="accordion-content"><div class="content-wrapper"><ul><li>الري المعتدل والمنتظم حسب حاجة الشجرة والظروف الجوية.</li><li>التسميد العضوي في بداية الموسم لتحسين خواص التربة.</li><li>التقليم السنوي للأغصان الميتة والمتشابكة لتحسين التهوية والإثمار.</li><li>مكافحة الآفات الحشرية والأمراض الفطرية بشكل وقائي.</li></ul></div></div></div>
+            ${finalMessageHTML}`
+    };
+
+    const selectElement = document.getElementById('location-select');
+    const resultsContainer = document.getElementById('results-container');
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        recommendationData.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.group;
+            option.textContent = item.name;
+            selectElement.appendChild(option);
+        });
+        
+        selectElement.addEventListener('change', showRecommendations);
+    });
+    
+    function showRecommendations() {
+        const selectedGroup = selectElement.value;
+        const selectedName = selectElement.options[selectElement.selectedIndex].text;
+        resultsContainer.classList.remove('visible');
+        
+        setTimeout(() => {
+            if (!selectedGroup) {
+                resultsContainer.innerHTML = '';
+                return;
+            }
+
+            const locationHeader = `<div class="location-header"><i class="fas fa-map-marker-alt"></i> توصيات زراعية لتجمع: <strong>${selectedName}</strong></div>`;
+            resultsContainer.innerHTML = locationHeader + recommendationContent[selectedGroup];
+            resultsContainer.classList.add('visible');
+            
+            setupAccordions();
+            
+            if (window.innerWidth < 768) {
+                resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 300);
+    }
+    
+    function setupAccordions() {
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach((item, index) => {
+            const header = item.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                const isActive = item.classList.toggle('active');
+                const content = item.querySelector('.accordion-content');
+                content.style.maxHeight = isActive ? content.scrollHeight + 'px' : '0px';
+            });
+            // Open the first item by default
+            if (index === 0) {
+                header.click();
+            }
+        });
+    }
+    </script>
+</body>
+</html>
